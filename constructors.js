@@ -83,17 +83,7 @@ DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
    this.health = health;
    this.mana = mana;
    this.isAlive = true;
-   this.inflictDamage = function(damage){
-    if(health - damage < 0){
-      throw Error("can't die");
-    } else if (health - damage > 300){
-      throw Error("can't have more than 300");
-    } else if (damage === this.health) {
-      this.isAlive = false;
-    } else {
-      this.health -= damage;
-    }
-   };
+
    this.spendMana = function(){};
    this.invoke = function(){};
  }
@@ -107,7 +97,19 @@ DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
    *
    * @param  {number} damage  Amount of damage to deal to the spellcaster
    */
-
+   Spellcaster.prototype.inflictDamage = function(damage){
+    if(this.health - damage < 0){
+      //throw Error("can't die");
+      this.health = 0;
+      this.isAlive = false;
+    } else if (this.health - damage > 300){
+      throw Error("can't have more than 300");
+    } else if (damage === this.health) {
+      this.isAlive = false;
+    }  else {
+      this.health -= damage;
+    }
+   };
   /**
    * @method spendMana
    *

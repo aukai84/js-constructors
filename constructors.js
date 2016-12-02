@@ -154,13 +154,27 @@ DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
    */
    Spellcaster.prototype.invoke = function(spell, target){
 
-    if (spell instanceof Spell){
+
+    if(spell instanceof DamageSpell && target instanceof Spellcaster){
+      if(this.mana > spell.cost){
+      target.inflictDamage(spell.damage);
+      return true;
+      }
+    } else if (spell instanceof Spell){
+      if(spell instanceof DamageSpell){
+        return false;
+      }
       if(this.mana >= spell.cost){
         this.spendMana(spell.cost);
         return true;
+      } else if(this.mana < spell.cost){
+        return false;
       } else {
       return true;
       }
-    } else return false;
+    } else {
+      return false;
+    }
 
-   };
+
+ };

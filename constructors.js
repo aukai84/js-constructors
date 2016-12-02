@@ -15,9 +15,6 @@
    this.name = name;
    this.cost = cost;
    this.description = description;
-   this.getDetails = function(){
-    return this.name + " " + this.cost + " " + this.description;
-  };
  }
 
 
@@ -29,7 +26,9 @@
    * @name getDetails
    * @return {string} details containing all of the spells information.
    */
-
+   Spell.prototype.getDetails = function(){
+    return this.name + " " + this.cost + " " + this.description;
+  };
 /**
  * A spell that deals damage.
  * We want to keep this code DRY (Don't Repeat Yourself).

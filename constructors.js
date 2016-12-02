@@ -88,6 +88,8 @@ DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
       throw Error("can't die");
     } else if (health - damage > 300){
       throw Error("can't have more than 300");
+    } else if (damage === this.health) {
+      this.isAlive = false;
     } else {
       this.health -= damage;
     }

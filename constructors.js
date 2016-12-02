@@ -15,9 +15,12 @@
    this.name = name;
    this.cost = cost;
    this.description = description;
-   this.getDetails = function(){};
-
+   this.getDetails = function(){
+    return this.name + " " + this.cost + " " + this.description;
+  };
  }
+
+
 
   /**
    * Returns a string of all of the spell's details.

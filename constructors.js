@@ -60,7 +60,7 @@ var damageSpell = new Spell("fireballs", 6, "burns you");
     Spell.call(this, name, cost, description);
   }
 
-  DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
+DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
 /**
  * Now that you've created some spells, let's create
  * `Spellcaster` objects that can use them!
@@ -78,6 +78,15 @@ var damageSpell = new Spell("fireballs", 6, "burns you");
  * @method  invoke
  */
 
+ function Spellcaster(name, health, mana) {
+   this.name = name;
+   this.health = health;
+   this.mana = mana;
+   this.isAlive = true;
+   this.inflictDamage = function(){};
+   this.spendMana = function(){};
+   this.invoke = function(){};
+ }
   /**
    * @method inflictDamage
    *

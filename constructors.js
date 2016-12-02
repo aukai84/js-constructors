@@ -54,7 +54,13 @@
  * @property {number} damage
  * @property {string} description
  */
+var damageSpell = new Spell("fireballs", 6, "burns you");
+  function DamageSpell(name, cost, damage, description) {
+    this.damage = damage;
+    Spell.call(this, name, cost, description);
+  }
 
+  DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
 /**
  * Now that you've created some spells, let's create
  * `Spellcaster` objects that can use them!

@@ -83,8 +83,6 @@ DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
    this.health = health;
    this.mana = mana;
    this.isAlive = true;
-
-   this.spendMana = function(){};
    this.invoke = function(){};
  }
   /**
@@ -119,7 +117,16 @@ DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
    * @param  {number} cost      The amount of mana to spend.
    * @return {boolean} success  Whether mana was successfully spent.
    */
-
+   Spellcaster.prototype.spendMana = function(cost){
+    if(this.mana <= 0){
+      this.mana = 0;
+    } else if (cost > this.mana){
+      return false;
+    } else {
+      this.mana -= cost;
+      return true;
+    }
+   }
   /**
    * @method invoke
    *

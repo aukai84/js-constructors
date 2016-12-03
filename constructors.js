@@ -156,25 +156,45 @@ DamageSpell.prototype = Object.create(Spell.prototype, {constructor: Spell});
 
 
     if(spell instanceof DamageSpell && target instanceof Spellcaster){
-      if(this.mana > spell.cost){
-      target.inflictDamage(spell.damage);
-      return true;
-      }
-    } else if (spell instanceof Spell){
-      if(spell instanceof DamageSpell){
-        return false;
-      }
       if(this.mana >= spell.cost){
         this.spendMana(spell.cost);
-        return true;
-      } else if(this.mana < spell.cost){
-        return false;
+        target.inflictDamage(spell.damage);
       } else {
-      return true;
+        return false;
       }
-    } else {
-      return false;
-    }
+      return true;
+      } else if(spell instanceof Spell){
+        if(spell instanceof DamageSpell){
+          return false;
+        } else if(this.mana >= spell.cost){
+          this.spendMana(spell.cost);
+        } else {
+          return false;
+        }
+        return true;
+      } else {
+        return false;
+      }
+
+
+
+
+
+    // if (spell instanceof Spell){
+    //   if(spell instanceof DamageSpell){
+    //     return false;
+    //   }
+    //   if(this.mana >= spell.cost){
+    //     this.spendMana(spell.cost);
+    //     return true;
+    //   } else if(this.mana < spell.cost){
+    //     return false;
+    //   } else {
+    //   return true;
+    //   }
+    // } else {
+    //   return false;
+    // }
 
 
  };
